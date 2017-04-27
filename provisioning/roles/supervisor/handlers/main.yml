@@ -1,0 +1,10 @@
+---
+- name: Restart supervisor
+  service: name=supervisor state=restarted enabled=yes
+
+- name: Read supervisor conf
+  command: supervisorctl reread && supervisorctl update
+
+- name: Ensure app in supervisor
+  command: supervisorctl add {{ app_name }}
+

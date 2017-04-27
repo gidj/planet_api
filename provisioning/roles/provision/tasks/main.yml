@@ -1,0 +1,22 @@
+---
+- name: Update apt cache
+  apt: update_cache=yes
+
+- name: Ensure system packages
+  apt: name={{ item }} state=present
+  with_items:
+      - git
+      - postgresql
+      - libpq-dev
+      - nginx
+      - python
+      - python-pip
+      - python-psycopg2
+      - supervisor
+
+- name: Ensure virtualenv installed
+  pip: name=virtualenv
+
+- name: Ensure srv directory
+  file: path=/srv state=directory
+

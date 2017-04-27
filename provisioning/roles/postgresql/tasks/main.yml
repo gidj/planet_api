@@ -1,0 +1,27 @@
+---
+- name: Ensure PostgreSQL is installed
+  apt: name=postgresql state=present
+
+- name: Ensure PostgreSQL is started
+  service: name=postgresql state=started enabled=yes
+
+- name: Ensure database
+  become: True
+  become_user: postgres
+  postgresql_db: name={{ db_name }}
+
+- name: Ensure test database
+  become: True
+  become_user: postgres
+  postgresql_db: name={{ test_db_name }}
+
+- name: Ensure database user
+  become: True
+  become_user: postgres
+  postgresql_user: db={{ app_name }} name={{ db_user }} password={{ db_password }} role_attr_flags=SUPERUSER state=present
+
+- name: Ensure database user for test db
+  become: True
+  become_user: postgres
+  postgresql_user: db={{ test_db_name }} name={{ db_user }} password={{ db_password }} role_attr_flags=SUPERUSER state=present
+

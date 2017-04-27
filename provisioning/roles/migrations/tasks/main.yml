@@ -1,0 +1,7 @@
+---
+- name: Initialize DB
+  become: True
+  become_user: "{{ app_name }}"
+  command: /srv/{{ app_name }}/venv/bin/python /srv/{{ app_name }}/site/manage.py db upgrade
+  args:
+      chdir: /srv/{{ app_name }}/site/

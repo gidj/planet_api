@@ -1,0 +1,12 @@
+[program:{{ app_name }}]
+command=/srv/{{ app_name }}/venv/bin/gunicorn --bind localhost:5000 wsgi:app -w 2
+directory=/srv/{{ app_name }}/site
+user={{ app_name }}
+autostart=true
+autorestart=true
+redirect_stderr=true
+{% if env_variables is defined %}
+{% set comma = joiner(',') %}
+environment={{ comma() }}{% for key, value in env_variables.iteritems() %}{{ key }}="{{ value }}"{% endfor %}
+{% endif %}
+

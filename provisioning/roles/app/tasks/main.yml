@@ -1,0 +1,26 @@
+---
+- name: Ensure app user
+  user: name={{ app_name }} createhome=no
+
+- name: Ensure app directory
+  file: path=/srv/{{ app_name }} state=directory owner={{ app_name }} group={{ app_name }}
+
+- name: Ensure log directory
+  file: path=/srv/{{ app_name }}/logs/nginx state=directory owner={{ app_name }} group={{ app_name }}
+
+- name: Clone git repository
+  become: True
+  become_user: "{{ app_name }}"
+  git:
+      dest=/srv/{{ app_name }}/site/
+      repo={{ app_repo }}
+      update=yes
+      # version={{ app_version }}
+
+- name: Ensure requirements
+  become: True
+  become_user: "{{ app_name }}"
+  pip:
+      requirements: /srv/{{ app_name }}/site/requirements.pip
+      virtualenv: /srv/{{ app_name }}/venv
+

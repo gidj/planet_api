@@ -1,0 +1,12 @@
+---
+ip_address: 192.168.33.10
+vm_name: planet_api
+app_name: planet
+app_repo: https://github.com/gidj/planet_api.git
+app_version: v0.1
+domain_name: planet_api.io.dev
+db_user: "{{ app_name }}"
+db_name: "{{ app_name }}"
+db_password: "{{ app_name }}"
+test_db_name: test
+test_db_password: test

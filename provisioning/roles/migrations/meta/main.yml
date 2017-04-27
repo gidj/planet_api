@@ -1,0 +1,5 @@
+---
+dependencies:
+  - { role: app }
+  - { role: postgresql }
+  - { role: provision }

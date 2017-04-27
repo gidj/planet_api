@@ -1,0 +1,29 @@
+---
+- name: Ensure nginx is installed
+  apt: name=nginx state=present
+
+- name: Ensure nginx is started
+  service: name=nginx state=started enabled=yes
+
+- name: Ensure directories for site configuration files
+  file: path=/etc/nginx/{{ item }}
+        state=directory
+        owner=root
+        group=root
+        mode=0755
+  with_items:
+      - "sites-available"
+      - "sites-enabled"
+
+- name: Ensure nginx site configuration
+  template:
+      src=nginx_site.j2
+      dest=/etc/nginx/sites-available/{{ app_name }}
+      owner=root
+      group=root
+      mode=0644
+
+- name: Ensure nginx site configuration is linked
+  file: src=/etc/nginx/sites-available/{{ app_name }} dest=/etc/nginx/sites-enabled/{{ app_name }} state=link
+  notify: Reload nginx
+
