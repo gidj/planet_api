@@ -16,9 +16,9 @@ Use Vagrant (preferred):
 Manully (not really recommended):
 * Make sure you have PostgreSQL installed on the machine you will use, and that it is running
 * Create the 'planet' user:
-> createuser planet
+> sudo -u postgres psql -c "CREATE USER planet WITH PASSWORD 'planet';"
 * Create the 'planet' database:
-> createdb planet
+> sudo -u postgres createdb planet
 * Clone the planet_api repository, and cd into it:
 > git clone https://github.com/gidj/planet_api.git && cd planet_api
 * Create a virtualenv and source it:
