@@ -49,5 +49,40 @@ Small API for serving assets
 
 * Now you should be able to access the API at localhost:5000/api/v1/
 
+## Running the tests:
+
+If you are interested in running the test suite, do the following:
+* Change directories to the base of the project:
+`cd planet_api`
+* Source the virtual environment:
+`source venv/bin/activate`
+* Run the tests:
+` python -m unittest tests`
+
+## Create Sample Records
+
+The project doesn't come with any data preloaded, but if you want to populate the database with some sample resources using the API, open a python shell and run the following:
+
+~~~~
+from random import choice
+import requests
+
+VALID_TYPES = {
+    u'satellite': (u'dove', u'rapideye'),
+    u'antenna'  : (u'dish', u'yagi'),
+}
+ASSETS_ENDPOINT = "http://192.168.33.10/api/v1/assets/"
+
+for number in range(60):
+    asset_type = choice(VALID_TYPES.keys())
+    asset_class = choice(VALID_TYPES[asset_type])
+    data = {
+        "name": "Sampl42"+str(number),
+        "type": asset_type,
+        "class": asset_class,
+    }
+
+    r = requests.post(ASSETS_ENDPOINT, json=data)
+~~~~
 
 
