@@ -1,2 +1,3 @@
 # planet_api
-Small api for serving assets
+
+Small API for serving assets
