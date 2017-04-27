@@ -2,10 +2,9 @@
 
 Small API for serving assets
 
-Instructions:
--------------
+## Instructions:
 
-Use Vagrant (preferred):
+### Use Vagrant (preferred):
 * Make sure you have vagrant intalled, with a suitable provider like VirtualBox
 * Clone the repo, and 'cd' into the base directory.
 
@@ -18,7 +17,7 @@ Use Vagrant (preferred):
 * Wait for the box to download and Vagrant to provision the VM
 * After provisioning, the base API endpoint is at http://192.168.33.10/api/v1/
 
-Manully (not really recommended):
+### Manully (not really recommended):
 * Make sure you have PostgreSQL installed on the machine you will use, and that it is running
 * Create the 'planet' user:
 
