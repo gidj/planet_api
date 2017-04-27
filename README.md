@@ -85,4 +85,7 @@ for number in range(60):
     r = requests.post(ASSETS_ENDPOINT, json=data)
 ~~~~
 
+If you are running the app in some way that doesn't use the default Vagrant instructions above, change the ASSETS_ENDPOINT variable accordingly.
+
+
 
